@@ -22,7 +22,7 @@ class Cronometro extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CronometroBt(texto: "Iniciar", icone: Icons.play_arrow),
-              CronometroBt(texto: "Parar", icone: Icons.stop),
+              // CronometroBt(texto: "Parar", icone: Icons.stop),
               CronometroBt(texto: "Reiniciar", icone: Icons.refresh),
             ],
           ),
