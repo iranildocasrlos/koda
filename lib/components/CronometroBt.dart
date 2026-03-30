@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 class CronometroBt extends StatelessWidget {
   final String texto;
   final IconData icone;
+  final void Function()? click;
 
-  const CronometroBt({super.key, required this.texto, required this.icone});
+  const CronometroBt({
+    super.key,
+    required this.texto,
+    required this.icone,
+    this.click,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class CronometroBt extends StatelessWidget {
         backgroundColor: Colors.black,
         // Ajuste este valor para aumentar ou diminuir a sombra
       ),
-      onPressed: () {},
+      onPressed: click,
       child: Row(
         children: [
           Padding(
