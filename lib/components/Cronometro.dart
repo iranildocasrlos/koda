@@ -12,12 +12,12 @@ class Cronometro extends StatelessWidget {
     final store = Provider.of<PomodoroStore>(context);
 
     return Container(
-      color: Colors.red,
+      color: store.estaEmAtividade ? Colors.red : Colors.green,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Iniciar Atividade",
+            store.estaEmAtividade ? "Atividade" : "Descanso",
             style: TextStyle(fontSize: 40, color: Colors.white),
           ),
           SizedBox(height: 5),

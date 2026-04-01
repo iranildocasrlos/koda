@@ -18,18 +18,21 @@ class CronometroBt extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 8,
         backgroundColor: Colors.black,
-        // Ajuste este valor para aumentar ou diminuir a sombra
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       onPressed: click,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Icon(icone, color: Colors.white),
-          ),
+          Icon(icone, color: Colors.white),
+          const SizedBox(width: 8),
           Text(
             texto,
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
