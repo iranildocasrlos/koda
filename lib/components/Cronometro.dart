@@ -11,47 +11,54 @@ class Cronometro extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = Provider.of<PomodoroStore>(context);
 
-    return Container(
-      color: store.estaEmAtividade ? Colors.red : Colors.green,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            store.estaEmAtividade ? "Atividade" : "Descanso",
-            style: TextStyle(fontSize: 40, color: Colors.white),
-          ),
-          SizedBox(height: 5),
-          Text(
-            "${store.minutos.toString().padLeft(2, '0')}:${store.segundos.toString().padLeft(2, '0')}",
-            style: TextStyle(fontSize: 120, color: Colors.white),
-          ),
-          SizedBox(height: 10),
-          Observer(
-            builder: (_) => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                if (!store.iniciado)
+    return Observer(
+      builder: (_) {
+        return Container(
+          color: store.estaEmAtividade
+              ? Colors
+                    .indigo
+                    .shade400 // Azul indigo para foco e produtividade
+              : Colors.teal.shade300, // Verde teal para calma e descanso
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                store.estaEmAtividade ? "Atividade" : "Descanso",
+                style: TextStyle(fontSize: 40, color: Colors.white),
+              ),
+              SizedBox(height: 5),
+              Text(
+                "${store.minutos.toString().padLeft(2, '0')}:${store.segundos.toString().padLeft(2, '0')}",
+                style: TextStyle(fontSize: 120, color: Colors.white),
+              ),
+
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  if (!store.iniciado)
+                    CronometroBt(
+                      texto: "Iniciar",
+                      icone: Icons.play_arrow,
+                      click: store.iniciar,
+                    ),
+                  if (store.iniciado)
+                    CronometroBt(
+                      texto: "Parar",
+                      icone: Icons.stop,
+                      click: store.parar,
+                    ),
                   CronometroBt(
-                    texto: "Iniciar",
-                    icone: Icons.play_arrow,
-                    click: store.iniciar,
+                    texto: "Reiniciar",
+                    icone: Icons.refresh,
+                    click: store.reiniciar,
                   ),
-                if (store.iniciado)
-                  CronometroBt(
-                    texto: "Parar",
-                    icone: Icons.stop,
-                    click: store.parar,
-                  ),
-                CronometroBt(
-                  texto: "Reiniciar",
-                  icone: Icons.refresh,
-                  click: store.parar,
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
